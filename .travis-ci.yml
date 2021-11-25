@@ -1,0 +1,13 @@
+os: linux
+dist: bionic
+language: node_js
+services:
+  - docker
+
+script: docker-compose -f docker-compose-build.yaml build --parallel
+
+deploy:
+  on:
+    branch: main
+  provider: script
+  script: bash docker_push.sh
